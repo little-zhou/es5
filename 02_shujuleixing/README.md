@@ -29,3 +29,7 @@ if(v){}
 // 正确写法
 if(typeof v==="undefined"){}
 ```
+# 空数组和空对象的typeof都是object,如何区分?
+```
+{} instanceof Array // false
+[] instanceof Array // true
