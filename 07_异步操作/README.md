@@ -43,6 +43,39 @@ function f1() {
 1000);
 }
 ```
+```
+class Observable {
+    constructor() {
+        this.observers = []
+    }
+
+    subscribe(func) {
+        this.observers.push(func);
+    }
+
+    unsubscribe(func) {
+        this.observers = this.observers.filter(observer => func !== observer);
+    }
+
+    notify(data) {
+        this.observers.forEach(observer => observer(data));
+    }
+}
+
+function f1(data) {
+    console.log(`f1 function data-----------: ${data}`);
+}
+
+function f2(data) {
+    console.log(`f2 function data-----------: ${data}`)
+}
+
+var observer = new Observable();
+observer.subscribe(f1);
+observer.subscribe(f2);
+
+observer.notify('I am a message.');
+```
 # 5.异步操作的流程控制
 ## 5.1串行执行
 ## 5.3并行执行
