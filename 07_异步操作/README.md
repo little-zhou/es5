@@ -77,6 +77,28 @@ observer.subscribe(f2);
 observer.notify('I am a message.');
 ```
 # 5.异步操作的流程控制
+```
+function final(value) {
+    console.log(`complete--------------: ${value}`);
+}
+
+function async(arg, callback) {
+    console.log(`参数为${arg}, 1秒后返回结果`);
+    setTimeout(function () { callback(arg * 2) }, 1000)
+}
+
+async(1, function (value) {
+    async(2, function (value) {
+        async(3, function (value) {
+            async(4, function (value) {
+                async(5, function (value) {
+                    async(6, final);
+                });
+            });
+        });
+    });
+});
+```
 ## 5.1串行执行
 ## 5.3并行执行
 ## 5.4并行与串行的结合
